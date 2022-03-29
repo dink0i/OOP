@@ -135,7 +135,7 @@ void tim_sach(kho_sach x)
     }
     else
     {
-        cout<<"Hello world!";
+        cout<<"Khong tim thay sach!";
     }
 }
 
