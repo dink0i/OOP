@@ -1,5 +1,5 @@
 #include<iostream>
-#include<vector>
+#include<string.h>
 using namespace std;
 
 class sach
@@ -21,9 +21,9 @@ class sach
         don_gia=0;
         so_luong=0;
     }
-    void nhap_ten_sach()
+    void nhap_ten_sach(string ten_sach)
     {
-        cin>>ten_sach;
+        this->ten_sach=ten_sach;
     }
     string lay_ten_sach()
     {
@@ -36,6 +36,13 @@ class sach
     string lay_ma_sach()
     {
         return ma_sach;
+    }void nhap_the_loai(string the_loai)
+    {
+        this->the_loai=the_loai;
+    }
+    string lay_the_loai()
+    {
+        return the_loai;
     }
     void nhap_tac_gia(string tac_gia)
     {
@@ -53,53 +60,71 @@ class sach
     {
         return don_gia;
     }
+    void nhap_so_luong(int so_luong)
+    {
+        this->so_luong=so_luong;
+    }
+    int lay_so_luong()
+    {
+        return so_luong;
+    }
     
     void display()
     {
-        cout<<ma_sach<<endl;
-        cout<<ten_sach<<endl;
-        cout<<the_loai<<endl;
-        cout<<tac_gia<<endl;
-        cout<<don_gia<<endl;
+        cout<<"-------------"<<endl;
+        cout<<"Ma sach: ";
+        cout<<lay_ma_sach()<<endl;
+        cout<<"Ten sach: ";
+        cout<<lay_ten_sach()<<endl;
+        cout<<"The loai: ";
+        cout<<lay_the_loai()<<endl;
+        cout<<"Tac gia: ";
+        cout<<lay_tac_gia()<<endl;
+        cout<<"Don gia: ";
+        cout<<lay_don_gia()<<endl;
+        cout<<"So luong: ";
+        cout<<lay_so_luong()<<endl;
+        cout<<"-------------"<<endl;
     }
 };
 
 class kho_sach:public sach
 {
     private:
-    vector<sach> a;
-    int so_luong;
+    sach a;
     public:
     kho_sach() :sach()
     {
-       so_luong=0; 
     }
     void nhap_sach()
     {
-        int n;
-        cout<<"Nhap so luong sach:"; cin>>n;
-        so_luong += n;
-        for(int i=so_luong - n; i<so_luong; i++ )
-        {
-            cout<<"--------------";
-            int s=1;
-            cout<<s<<endl;
-            cout<<"nhap ten sach:";
-            a[i].nhap_ten_sach();   
-        }
-    }
+        string z;
+        int y;
+        cout<<"nhap ma sach:"; getline(cin,z);
+        a.nhap_ma_sach(z);
+        cout<<"nhap ten sach:"; getline(cin,z);
+        a.nhap_ten_sach(z);
+        cout<<"nhap the loai: ";getline(cin,z);
+        a.nhap_the_loai(z);
+        cout<<"nhap tac gia: ";getline(cin,z);
+        a.nhap_tac_gia(z);
+        cout<<"nhap don gia: ";cin>>y;
+        a.nhap_don_gia(y);
+        cout<<"nhap so luong: ";cin>>y;
+        a.nhap_so_luong(y);  
+    }   
     void display()
     {
-        sach::display();
-        cout<<so_luong<<endl;
+        a.display();
     }
 
 };
 
 int main()
 {
-    kho_sach a;
-    a.nhap_sach();
-    a.display();
+    int x=0;
+    kho_sach a[100];
+    a[x].nhap_sach();
+    a[x].display();
     return 0;
 }
