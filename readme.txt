@@ -1,5 +1,5 @@
 khởi tạo nhà sách có 2 lớp con là kho sách và hoá đơn.
-có các thuộc tính như hình.
+có các thuộc tính như hình...
 
 +trong kho sách có thêm thuộc tính số lượng sách trong kho.
 các hành động:
