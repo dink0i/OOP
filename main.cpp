@@ -112,7 +112,10 @@ class kho_sach:public sach
         a.nhap_don_gia(y);
         cout<<"nhap so luong: ";cin>>y;
         a.nhap_so_luong(y);  
-    }   
+    } 
+
+    friend void tim_sach(kho_sach x);  
+
     void display()
     {
         a.display();
@@ -120,11 +123,27 @@ class kho_sach:public sach
 
 };
 
+void tim_sach(kho_sach x)
+{
+    string ma_sach_1="noID";
+    cout<<"Nhap ma sach can tim: ";
+    fflush(stdin);
+    getline(cin,ma_sach_1);
+    if(ma_sach_1 == x.a.lay_ma_sach())
+    {
+        x.a.display();
+    }
+    else
+    {
+        cout<<"Hello world!";
+    }
+}
+
 int main()
 {
     int x=0;
     kho_sach a[100];
     a[x].nhap_sach();
-    a[x].display();
+    tim_sach(a[x]);
     return 0;
 }
