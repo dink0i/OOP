@@ -6,10 +6,10 @@ using namespace std;
 
 class NhapSach{
 private:
-	string tensach;
-	string tacgia;
-	string theloai;
-	int soluong;
+	string ten_sach;
+	string tac_gia;
+	string the_loai;
+	int so_luong;
 public:
 	
 	NhapSach(){
