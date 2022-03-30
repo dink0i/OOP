@@ -173,6 +173,7 @@ class hoa_don :public sach
     }
 };
 
+
 class All_Kho_Sach
 {
 private:
@@ -183,7 +184,6 @@ public:
         int option;
         while(true)
         {
-            int so_loai_sach = 0;
             cout<<"CHUONG TRINH QUAN LY NHA SACH"<<endl;
             cout<<"---------------------"<<endl;
             cout<<"Option:"<<endl;
@@ -203,13 +203,12 @@ public:
                 cout<<"Nhap ma sach: "; fflush(stdin);
                 getline(cin,ID);
                 int k=0;
-                for(int i=0; i<so_loai_sach;i++)
+                for(int i=0; i<toan_bo_sach_trong_kho.size();i++)
                 {
                     if(ID==x.lay_ma_sach())
                     {
                         x.them_sach();
                         toan_bo_sach_trong_kho.push_back(x);
-                        k++;
                         break;
                     }
                 }
@@ -217,7 +216,6 @@ public:
                 {
                     x.nhap_sach_moi(ID);
                     toan_bo_sach_trong_kho.push_back(x);
-                    so_loai_sach++;
                 }
                 break;
             }
