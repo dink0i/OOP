@@ -1,145 +1,17 @@
-/*
-#include <iostream>
-#include <string>
-#include <fstream>
-
-using namespace std;
-
-class EnterBook{
-private:
-	string book_name;
-	string book_code;
-	string book_author;
-	string book_type;
-	int book_amount;
-	int book_cost;
-public:
-	
-	EnterBook(){
-	}
-	EnterBooks(){
-		cout << "\n>  Nhap ten sach: ";
-		fflush(stdin);
-		getline(cin, this->book_name);	//nhap
-		
-		cout << "\n>  Nhap ma sach: ";
-		fflush(stdin);
-		getline(cin, this->book_code);	//nhap
-			
-		cout << ">  Nhap tac gia: ";
-		fflush(stdin);
-		getline(cin, this->book_author);
-		
-		cout << ">  Nhap the loai: ";
-		fflush(stdin);
-		getline(cin, this->book_type);	
-			
-		cout << ">  Nhap so luong: ";
-		fflush(stdin);
-		cin >> this->book_amount;
-		
-		cout << ">  Nhap gia sach: ";
-		fflush(stdin);
-		cin >> this->book_cost;
-	}
-	PrintNewEnterBook(){
-		cout << this->book_name 	<< "\t\t\t" <<	this->book_code 	<< "\t\t\t" << 
-				this->book_author 	<< "\t\t\t" << 	this->book_type 	<< "\t\t\t"<<
-				this->book_amount 	<<"\t\t\t" 	<< 	this->book_amount 	<< "\n";
-		fstream FileInSachNhap;
-		FileInSachNhap.open("FileInSachNhap.txt", ios::out|ios::app);
-		FileInSachNhap << "\n" + book_name + "\t\t\t";
-		FileInSachNhap << book_code + "\t\t\t";
-		FileInSachNhap << book_author + "\t\t\t";
-		FileInSachNhap << book_type + "\t\t\t";
-		FileInSachNhap << book_amount + "\t\t\t";
-		FileInSachNhap << book_cost;
-	}
-	InTongCacSach(){
-		
-	}
-};
-
-
-int main(){
-	while(true){
-		cout << "=====================================================================================================\n";
-		cout << "======PHAN MEM QUAN LY NHA SACH======\n";
-		cout << "======************MENU*********======\n";
-		cout << "1. NHAP SACH MOI:\n";
-		
-		int key;
-		cout << ">> CHON: ";
-		cin >> key;
-		int num_book_name = 0;
-		switch(key){
-			case 1:
-				system("cls");
-				EnterBook a[num_book_name];
-				a[num_book_name].EnterBooks();
-				system("cls");
-				cout << "===DANH SACH CAC SACH DA NHAP===\n";
-				cout << "Ten sach\t\t\tTac gia\t\t\tThe loai\t\t\tSo luong\n";
-				a[num_book_name].PrintNewEnterBook();
-				num_book_name++;
-				break;
-		}
-	}
-	return 0;
-}
-/*
-int main(){
-	while(true){
-		cout << "=====================================================================================================\n";
-		cout << "======PHAN MEM QUAN LY NHA SACH======\n";
-		cout << "======************MENU*********======\n";
-		cout << "1. NHAP SACH MOI:\n";
-		
-		int key;
-		cout << ">> CHON: ";
-		cin >> key;
-		int num_book_name = 0;
-		switch(key){
-			case 1:
-				system("cls");
-//				int num_book_name = 0;
-//				cout << "> Nhap so luong ten sach can nhap: ";
-//				cin >> num_book_name;
-//				system("cls");
-				EnterBook a[num_book_name];
-//				for(int i = 0; i < num_book_name; i++){
-//				cout << ">> NHAP THONG TIN TEN SACH THU " << i + 1;
-				a[num_book_name].EnterBooks();
-				system("cls");
-//				}
-				cout << "===DANH SACH CAC SACH DA NHAP===\n";
-				cout << "Ten sach\t\t\tTac gia\t\t\tThe loai\t\t\tSo luong\n";
-				for(int i = 0; i < num_book_name; i++) 
-					a[i].PrintNewEnterBook();
-				break;
-		}
-	}
-	return 0;
-//	cout << "===DANH SACH CAC SACH DA NHAP===\n";
-	
-}
-
-*/
-
 #include<iostream>
 #include<string.h>
 using namespace std;
 
 class sach
 {
-    private:
+private:
     string ma_sach;
     string ten_sach;
     string the_loai;
     string tac_gia;
     int don_gia;
     int so_luong;
-    public:
+public:
     sach()
     {
         ma_sach="noID";
@@ -216,31 +88,49 @@ class sach
     }
 };
 
-class kho_sach:public sach
+class kho_sach : public sach //kho sách kế thừa từ sách
 {
-    private:
+private:
     sach a;
-    public:
-    kho_sach() :sach()
+public:
+    kho_sach() : sach()
     {
+
     }
     void nhap_sach()
     {
         string z;
         int y;
-        cout<<"nhap ma sach:"; getline(cin,z);
+        cout<<"Nhap ma sach:"; 
+        fflush(stdin);
+        getline(cin,z);
         a.nhap_ma_sach(z);
-        cout<<"nhap ten sach:"; getline(cin,z);
-        a.nhap_ten_sach(z);
-        cout<<"nhap the loai: ";getline(cin,z);
-        a.nhap_the_loai(z);
-        cout<<"nhap tac gia: ";getline(cin,z);
-        a.nhap_tac_gia(z);
-        cout<<"nhap don gia: ";cin>>y;
-        a.nhap_don_gia(y);
-        cout<<"nhap so luong: ";cin>>y;
-        a.nhap_so_luong(y);  
-    } 
+
+        // cout<<"Nhap ten sach:";
+        // fflush(stdin);
+        // getline(cin,z);
+        // a.nhap_ten_sach(z);
+
+        // cout<<"Nhap the loai: ";
+        // fflush(stdin);
+        // getline(cin,z);
+        // a.nhap_the_loai(z);
+
+        // cout<<"Nhap tac gia: ";
+        // fflush(stdin);
+        // getline(cin,z);
+        // a.nhap_tac_gia(z);
+
+        // cout<<"Nhap don gia: ";
+        // fflush(stdin);
+        // cin>>y;
+        // a.nhap_don_gia(y);
+
+        // cout<<"Nhap so luong: ";
+        // fflush(stdin);
+        // cin>>y;
+        // a.nhap_so_luong(y);  
+    }
 
     friend void tim_sach(kho_sach x);  
 
@@ -250,28 +140,59 @@ class kho_sach:public sach
     }
 
 };
-
+string ma_sach_tim;
 void tim_sach(kho_sach x)
 {
-    string ma_sach_1="noID";
-    cout<<"Nhap ma sach can tim: ";
-    fflush(stdin);
-    getline(cin,ma_sach_1);
-    if(ma_sach_1 == x.a.lay_ma_sach())
+    // string ma_sach_tim="noID"; //mã sách tạm
+    // cout<<"Nhap ma sach can tim: ";
+    // fflush(stdin);
+    // getline(cin,ma_sach_tim); //nhập mã sách tạm
+    if(ma_sach_tim == x.a.lay_ma_sach()) 
     {
         x.a.display();
     }
     else
     {
-        cout<<"Hello world!";
+        cout<<"Sach trong kho da het hoac khong ton tai!\n";
     }
 }
 
 int main()
 {
-    int x=0;
-    kho_sach a[100];
-    a[x].nhap_sach();
-    tim_sach(a[x]);
+    int dem = 0;
+    kho_sach kS[100];
+    while(true){
+        cout << "1. Nhap sach" << endl;
+        cout << "2. Hien thi toan bo sach" << endl;
+        cout << "3. Tim sach trong kho" << endl;
+        cout << ">Chon: ";
+        int key; cin >> key;
+        switch(key){
+            case 1:
+                kS[dem].nhap_sach();
+                dem++;
+                break;
+            case 2:
+                for(int i = 0; i < dem ; i++)
+                {
+                    cout << "\nSTT: " << i+1 << endl;
+                    kS[i].display();
+                }
+                break;
+            case 3:
+                string ma_sach_tim="noID"; //mã sách tạm
+                cout << "Nhap ma sach can tim: " << endl;
+                fflush(stdin);
+                getline(cin,ma_sach_tim); //nhập mã sách tạm
+                for(int i = 0; i < dem ; i++)
+                {
+                    tim_sach(kS[i]);
+                }
+        }
+    }
+    // int x=0;
+    // kho_sach a[100];
+    // a[x].nhap_sach();
+    // tim_sach(a[x]);
     return 0;
 }
