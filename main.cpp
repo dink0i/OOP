@@ -88,12 +88,12 @@ class sach
         cout<<"-------------"<<endl;
     }
 };
-class sach_trong_kho
+class kho_sach
 {
     private:
     sach s[100];
     public:
-    sach_trong_kho() 
+    kho_sach() 
     {}
 
     void nhap_sach(int &so_loai_sach)
@@ -192,7 +192,7 @@ class hoa_don :public sach
 int main()
 {
     int so_loai_sach=0;
-    sach_trong_kho a;
+    kho_sach a;
     cout<<"---------------------"<<endl;
     cout<<"CHUONG TRINH QUAN LY NHA SACH"<<endl;
     cout<<"---------------------"<<endl;
