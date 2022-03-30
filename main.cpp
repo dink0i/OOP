@@ -143,19 +143,13 @@ class sach_trong_kho
 
 };
 
-void tim_sach(sach_trong_kho x)
+void hien_thi_sach(sach_trong_kho x, string ma_sach_tim)
 {
-    string ma_sach_1="noID";
-    cout<<"Nhap ma sach can tim: ";
-    fflush(stdin);
-    getline(cin,ma_sach_1);
-    if(ma_sach_1 == x.s.lay_ma_sach())
     {
-        x.s.display();
-    }
-    else
-    {
-        cout<<"Khong tim thay sach!";
+        cout<<"---------------------"<<endl;
+        cout<<"Sach can tim la:"<<endl;
+        x.display();
+        cout<<"---------------------"<<endl;
     }
 }
 
@@ -180,13 +174,14 @@ int main()
     cout<<"Option:"<<endl;
     cout<<"1. Nhap them sach vao kho"<<endl;
     cout<<"2. Hien thi ra toan bo danh sach cac loai sach"<<endl;
+    cout<<"3. Tim thong tin sach"<<endl;
     cout<<"---------------------"<<endl;
     while(1)
     {
         int option;
         cout<<"Option: ";
         cin>>option;
-        while(option>2 || option<0)
+        while(option>3 || option<0)
         {
             cout<<"Vui long lua chon lai option!"<<endl;
             cout<<"Option: ";
@@ -222,6 +217,27 @@ int main()
                 for(int i=0; i<so_loai_sach;i++)
                 {
                     a[i].display();
+                }
+                break;
+            }
+            case 3:
+            {
+                int k=0;
+                string ma_sach_tim;
+                fflush(stdin);
+                cout<<"Nhap ma sach can tim:"; getline(cin,ma_sach_tim);
+                for(int i=0; i<so_loai_sach;i++)
+                {
+                    if(ma_sach_tim == a[i].lay_ma_sach1())
+                    {
+                        hien_thi_sach(a[i], ma_sach_tim);
+                        break;
+                    }
+                    k++;
+                }
+                if(k==so_loai_sach)
+                {
+                    cout<<"Khong tim thay thong tin sach!"<<endl;
                 }
                 break;
             }
