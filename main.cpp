@@ -91,67 +91,91 @@ class sach
 class sach_trong_kho
 {
     private:
-    sach s;
+    sach s[100];
     public:
     sach_trong_kho() 
-    {
-    }
+    {}
 
-    string lay_ma_sach1()
+    void nhap_sach(int &so_loai_sach)
     {
-        return s.lay_ma_sach();
-    }
-
-    void nhap_sach_moi(string ma_sach_moi)
-    {
-        string z;
-        int y;
         cout<<"---------------------"<<endl;
-        s.nhap_ma_sach(ma_sach_moi);
-        fflush(stdin);
-        cout<<"nhap ten sach:"; getline(cin,z);
-        s.nhap_ten_sach(z);
-        fflush(stdin);
-        cout<<"nhap the loai: ";getline(cin,z);
-        s.nhap_the_loai(z);
-        fflush(stdin);
-        cout<<"nhap tac gia: ";getline(cin,z);
-        s.nhap_tac_gia(z);
-        fflush(stdin);
-        cout<<"nhap don gia: ";cin>>y;
-        s.nhap_don_gia(y);
-        fflush(stdin);
-        cout<<"nhap so luong: ";cin>>y;
-        s.nhap_so_luong(y); 
-        cout<<"---------------------"<<endl; 
+        string ID;
+        cout<<"Nhap ma sach: "; fflush(stdin);
+        getline(cin,ID);
+        int k=0;
+        for(int i=0; i<so_loai_sach;i++)
+        {
+            if(ID==s[i].lay_ma_sach())
+            {
+                cout<<"Sach nay da co san, chi can nhap them so luong!"<<endl;
+                int n;
+                cout<<"Nhap them so luong: "; fflush(stdin);
+                cin>>n;
+                s[i].nhap_so_luong(n + s[i].lay_so_luong());
+                k++;
+                cout<<"---------------------"<<endl;
+                break;
+            }
+        }
+        if(k==0)
+        {
+            so_loai_sach++;
+            int i=so_loai_sach-1;
+            string z;
+            int y;
+            s[i].nhap_ma_sach(ID);
+            fflush(stdin);
+            cout<<"nhap ten sach:"; getline(cin,z);
+            s[i].nhap_ten_sach(z);
+            fflush(stdin);
+            cout<<"nhap the loai: ";getline(cin,z);
+            s[i].nhap_the_loai(z);
+            fflush(stdin);
+            cout<<"nhap tac gia: ";getline(cin,z);
+            s[i].nhap_tac_gia(z);
+            fflush(stdin);
+            cout<<"nhap don gia: ";cin>>y;
+            s[i].nhap_don_gia(y);
+            fflush(stdin);
+            cout<<"nhap so luong: ";cin>>y;
+            s[i].nhap_so_luong(y); 
+            cout<<"---------------------"<<endl;
+            }
     } 
-    void them_sach()
+
+    void tim_sach(int so_loai_sach)
     {
-        cout<<"Sach nay da co san, chi can nhap them so luong!"<<endl;
-        int n;
-        cout<<"Nhap them so luong: "; fflush(stdin);
-        cin>>n;
-        s.nhap_so_luong(n + s.lay_so_luong());
+        cout<<"---------------------"<<endl;
+        string ID;
+        cout<<"Nhap ma sach: "; fflush(stdin);
+        getline(cin,ID);
+        int k=0;
+        for(int i=0; i<so_loai_sach;i++)
+        {
+            if(ID==s[i].lay_ma_sach())
+            {
+                cout<<"Thong tin sach can tim la:"<<endl;
+                s[i].display();
+                k++;
+                break;
+            }
+        }
+        if(k==0)
+        {
+            cout<<"Khong tim thay thong tin sach!"<<endl;
+        }
+        cout<<"---------------------"<<endl;
     }
 
-    friend void tim_sach(sach_trong_kho x);  
-
-    void display()
+    void display(int so_loai_sach)
     {
-        s.display();
+        for(int i=0; i<so_loai_sach;i++)
+        {
+            s[i].display();
+        }
     }
 
 };
-
-void hien_thi_sach(sach_trong_kho x, string ma_sach_tim)
-{
-    {
-        cout<<"---------------------"<<endl;
-        cout<<"Sach can tim la:"<<endl;
-        x.display();
-        cout<<"---------------------"<<endl;
-    }
-}
 
 class hoa_don :public sach
 {
@@ -168,7 +192,8 @@ class hoa_don :public sach
 int main()
 {
     int so_loai_sach=0;
-    sach_trong_kho a[100];
+    sach_trong_kho a;
+    cout<<"---------------------"<<endl;
     cout<<"CHUONG TRINH QUAN LY NHA SACH"<<endl;
     cout<<"---------------------"<<endl;
     cout<<"Option:"<<endl;
@@ -191,54 +216,17 @@ int main()
         {
             case 1:
             {
-                string ID;
-                cout<<"Nhap ma sach: "; fflush(stdin);
-                getline(cin,ID);
-                int k=0;
-                for(int i=0; i<so_loai_sach;i++)
-                {
-                    if(ID==a[i].lay_ma_sach1())
-                    {
-                        a[i].them_sach();
-                        k++;
-                        break;
-                    }
-                }
-                if(k==0)
-                {
-                    so_loai_sach++;
-                    a[so_loai_sach-1].nhap_sach_moi(ID);
-                }
-                
+               a.nhap_sach(so_loai_sach);
                 break;
             }
             case 2:
             {
-                for(int i=0; i<so_loai_sach;i++)
-                {
-                    a[i].display();
-                }
+                a.display(so_loai_sach);
                 break;
             }
             case 3:
             {
-                int k=0;
-                string ma_sach_tim;
-                fflush(stdin);
-                cout<<"Nhap ma sach can tim:"; getline(cin,ma_sach_tim);
-                for(int i=0; i<so_loai_sach;i++)
-                {
-                    if(ma_sach_tim == a[i].lay_ma_sach1())
-                    {
-                        hien_thi_sach(a[i], ma_sach_tim);
-                        break;
-                    }
-                    k++;
-                }
-                if(k==so_loai_sach)
-                {
-                    cout<<"Khong tim thay thong tin sach!"<<endl;
-                }
+                a.tim_sach(so_loai_sach);
                 break;
             }
             case 0:
