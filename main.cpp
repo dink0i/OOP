@@ -341,13 +341,15 @@ int main()
                         if (tmp == 0) cout << "\nMa sach " << hd[j].lay_ma_sach_kH_mua() << "kho khong tim thay!" << endl; //neu khong tim thay sach
                         tmp = 0;
                     }
-
+                    float tong_tien_tmp = 0;
                     cout<<"\n\n==HOA DON=="<<endl;
                     cout<<"\n\nTen KH\t\t\tSDT KH\t\t\tMa Sach\t\t\tDon Gia\t\t\tSo Luong\t\t\tThanh Tien" << endl;
                     for(int j = so_hoa_don; j < so_hoa_don + so_loai_sach_kH_mua; j++)
                     {
                         hd[j].display_hoa_don(); //in hoa don ra
+                        tong_tien_tmp+= hd[j].lay_don_gia_kH_mua()*hd[j].lay_so_luong_kH_mua();
                     }
+                    cout<<"\n\nTong Tien:\t\t\t\t\t\t\t\t\t\t\t\t\t\t" << tong_tien_tmp << endl;
                     so_hoa_don+=so_loai_sach_kH_mua;
 
                 }
