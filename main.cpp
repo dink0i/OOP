@@ -356,7 +356,7 @@ int main()
                 
                 else if(so_loai_sach_kH_mua == 1)
                 {
-                    // hd[so_hoa_don].nhap_thong_tin_sach_ban(); //nhap thong tin sach ban [tai ham hoa_don ke thua nha_sach]
+                    hd[so_hoa_don].nhap_thong_tin_sach_kH_mua(); //nhap thong tin sach ban
                     for(int i = 0; i < so_loai_sach; i++)
                     {
                         if(hd[so_hoa_don].lay_ma_sach_kH_mua() == s[i].lay_ma_sach()) //ma sach can ban bang ma sach trong kho
@@ -391,6 +391,7 @@ int main()
                             cout<<"\n\n==HOA DON=="<<endl;
                             cout<<"\n\nTen KH\t\t\tSDT KH\t\t\tMa Sach\t\t\tDon Gia\t\t\tSo Luong\t\t\tThanh Tien" << endl;
                             hd[so_hoa_don].display_hoa_don(); //in hoa don ra
+                            cout<<"\n\nTong Tien:\t\t\t\t\t\t\t\t\t\t\t\t\t\t" << hd[so_hoa_don].lay_don_gia_kH_mua()*hd[so_hoa_don].lay_so_luong_kH_mua() << endl;
                             so_hoa_don++; //so hoa don tang len
                             break;
                         }
