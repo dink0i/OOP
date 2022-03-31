@@ -194,7 +194,7 @@ int main()
     int so_loai_sach=0;
     kho_sach a;
     cout<<"---------------------"<<endl;
-    cout<<"CHUONG TRINH QUAN LY NHA SACH"<<endl;
+    cout<<"--CHUONG TRINH QUAN LY NHA SACH--"<<endl;
     cout<<"---------------------"<<endl;
     cout<<"Option:"<<endl;
     cout<<"1. Nhap them sach vao kho"<<endl;
