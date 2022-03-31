@@ -185,8 +185,8 @@ int main()
     {
         cout << endl << endl;
         cout<<"###############################################################################"<<endl;
-        cout<<"#                       CHUONG TRINH QUAN LY NHA SACH                         #"<<endl;
-        cout<<"#                       -----------------------------                         #"<<endl;
+        cout<<"#                       PHAN MEM TRINH QUAN LY NHA SACH                       #"<<endl;
+        cout<<"#                       -------------------------------                       #"<<endl;
         cout<<"# - Option List:                                                              #"<<endl;
         cout<<"# + 1. Nhap them sach vao kho                                                 #"<<endl;
         cout<<"# + 2. Hien thi ra toan bo danh sach cac loai sach                            #"<<endl;
@@ -335,8 +335,15 @@ int main()
                                 s[i].nhap_so_luong(s[i].lay_so_luong()-hd[j].lay_so_luong_kH_mua()); //giam so luong trong kho sach
                                 hd[j].find_don_gia_kH_mua(s[i].lay_don_gia()); //lay gia sach dua vao hoa don
                                 //so_hoa_don++; //so hoa don tang len
-                            }
-                            
+                                if(s[i].lay_so_luong() == 0)
+                                {
+                                    for(int k = i + 1; k < so_loai_sach; k++)
+                                    {
+                                        s[k-1] = s[k]; 
+                                    }
+                                    so_loai_sach--;
+                                }
+                            }          
                         }
                         if (tmp == 0) cout << "\nMa sach " << hd[j].lay_ma_sach_kH_mua() << "kho khong tim thay!" << endl; //neu khong tim thay sach
                         tmp = 0;
@@ -387,7 +394,14 @@ int main()
                             }
                             s[i].nhap_so_luong(s[i].lay_so_luong()-hd[so_hoa_don].lay_so_luong_kH_mua()); //giam so luong trong kho sach
                             hd[so_hoa_don].find_don_gia_kH_mua(s[i].lay_don_gia()); //lay gia sach dua vao hoa don
-
+                            if(s[i].lay_so_luong() == 0)
+                            {
+                                for(int k = i + 1; k < so_loai_sach; k++)
+                                {
+                                    s[k-1] = s[k]; 
+                                }
+                                so_loai_sach--;
+                            }
                             cout<<"\n\n==HOA DON=="<<endl;
                             cout<<"\n\nTen KH\t\t\tSDT KH\t\t\tMa Sach\t\t\tDon Gia\t\t\tSo Luong\t\t\tThanh Tien" << endl;
                             hd[so_hoa_don].display_hoa_don(); //in hoa don ra
