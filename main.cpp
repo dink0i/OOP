@@ -96,9 +96,9 @@ public:
         return so_luong_kH_mua;
     }
 
-    void nhap_ten_khach_hang(string ten_khac_hang)
+    void nhap_ten_khach_hang(string ten_khach_hang)
     {
-        this->ten_khach_hang = ten_khac_hang;
+        this->ten_khach_hang = ten_khach_hang;
     }
     string lay_ten_khach_hang()
     {
