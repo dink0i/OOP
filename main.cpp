@@ -179,11 +179,12 @@ class kho_sach
 
 class khach_hang
 {
-    private:
+    protected:
     string ten_khach_hang = "unName";
     double so_dien_thoai = 0;
     int so_luong_sach_mua = 0;
     public:
+    sach t[100];
     void nhap_ten_khach_hang(string ten_khach_hang)
     {
         this->ten_khach_hang=ten_khach_hang;
@@ -214,7 +215,6 @@ class hoa_don :public kho_sach
 {
     private:
     khach_hang k[100];
-    sach t[100];
     public:
     hoa_don():kho_sach()
     {
@@ -238,84 +238,103 @@ class hoa_don :public kho_sach
     void xuat_hoa_don(int &so_loai_sach, int &so_khach_hang)
     {
         cout<<"---------------------"<<endl;
-        double ID;
-        cout<<"Nhap so dien thoai khach hang: ";
-        cin >> ID;
-        int k = 0;
+        so_khach_hang ++;
         int so_loai_sach_mua = 0;
-        for(int i=0; i<so_khach_hang;i++)
+        cout<<"Nhap thong tin khach hang"<<endl;
+        string x;
+        double y;
+        fflush(stdin);
+        cout<<"Ten khach hang: "; getline(cin,x);
+        k[so_khach_hang -1].nhap_ten_khach_hang(x);
+        cout<<"So dien thoai khach hang: "; cin >> y;
+        k[so_khach_hang -1].nhap_so_dien_thoai(y);
+        // ham dien hoa don
+        cout<<"Ban muon mua bao nhieu loai sach? "; cin >> so_loai_sach_mua;
+        while(so_loai_sach_mua>so_loai_sach)
         {
-            if(ID==k[i].lay_so_dien_thoai())
+            cout<<"Chung toi hien co "<<so_loai_sach<<" loai sach"<<endl;
+            cout<<"So loai sach ban muon mua lon hon so loai sach chung toi co"<<endl;
+            cout<<"Ban co muon tra cuu cac loai sach chung toi hien co hay tim kiem thong tin loai sach nao khong?"<<endl;
+            cout<<"Neu co, an phim 1, tro ve man hinh chinh va lua chon option 2 hoac 3."<<endl;
+            cout<<" Neu khong, an phim so bat ki"<<endl;
+            int temp; cin>>temp;
+            if(temp == 1)
             {
-                cout<<"Chao mung khach hang "<<k[i].lay_ten_khach_hang()<<" quay tro lai"<<endl;
-                // ham dien hoa don
-                cout<<"Ban muon mua bao nhieu loai sach?"; cin >> so_loai_sach_mua;
-                while(so_loai_sach_mua>so_loai_sach)
-                {
-                    cout<<"Chung toi hien co "<<so_loai_sach<<" loai sach"<<endl;
-                    cout<<"So loai sach ban muon mua lon hon so loai sach chung toi co"<<endl;
-                    cout<<"Ban co muon tra cuu cac loai sach chung toi hien co hay tim kiem thong tin loai sach nao khong?"<<endl;
-                    cout<<"Neu co, an phim 1, tro ve man hinh chinh va lua chon option 2 hoac 3."<<endl;
-                    cout<<" Neu khong, an phim so bat ki"<<endl;
-                    int temp; cin>>temp;
-                    if(temp == 1)
-                    {
-                        break;
-                    }
-                    else 
-                    {
-                        cout<<"Chung toi hien co "<<so_loai_sach<<" loai sach"<<endl;
-                        cout<<"Vui long nhap lai so loai sach can mua"; cin >> so_loai_sach_mua;
-                    }
-                }
-                for(int i=0; i<so_loai_sach_mua; i++)
-                {
-                    int c = 0;
-                    string x;
-                    while(c==0)
-                    {
-                        cout<<"Sach thu "<<i+1<<endl;
-                        cout<<"Nhap ma sach: ";fflush(stdin); getline(cin,x);
-                        t[i].nhap_ma_sach(x);
-                        for(int j=0; j<so_loai_sach; j++)
-                        {
-                            if(x == s[j].lay_ma_sach())
-                            {
-                                t[i]=s[j];
-                                int n;
-                                cout<<"Thong tin sach: "<<endl;
-                                cout<<"Ten sach: "<<t[i].lay_ten_sach()<<endl;
-                                cout<<"Tac gia: "<<t[i].lay_tac_gia()<<endl;
-                                cout<<"Don gia: "<<t[i].lay_don_gia()<<endl;
-                                cout<<"Nhap so luong can mua: "; cin>>n;
-                                t[i].nhap_so_luong(n);
-                                c++;
-                                break;
-                            }
-                        }
-                        if(c==0)
-                        {
-                            cout<<"Loai sach ma ban muon mua khong co, vui long chon loai sach khac."<<endl;
-                            cout<<"Neu ban muon chon loai sach khac ma khong giam so luong can mua, nhan phim 1"<<endl;
-                            cout<<"Neu ban muon giam so luong sach can mua di 1 loai, an phim so bat ki"<<endl;
-                            int n; cin>>n;
-                            if(n != 1)  so_loai_sach_mua--;
-                        }
-                    }
-
-                }
-                k++;
-                cout<<"---------------------"<<endl;
-                break;;
+                return;
+            }
+            else 
+            {
+                cout<<"Chung toi hien co "<<so_loai_sach<<" loai sach"<<endl;
+                cout<<"Vui long nhap lai so loai sach can mua"; cin >> so_loai_sach_mua;
             }
         }
-        if(k == 0)
+        for(int i=0; i<so_loai_sach_mua; i++)
         {
-            so_khach_hang++;
-            // ham dien hoa don
+            int c = 0;
+            string x;
+            while(c==0)
+            {
+                cout<<"Sach thu "<<i+1<<endl;
+                cout<<"Nhap ma sach: ";fflush(stdin); getline(cin,x);
+                for(int p=0; p<so_loai_sach; p++)
+                {
+                    if(x == s[p].lay_ma_sach())
+                    {
+                        
+                        k[so_khach_hang-1].t[i].nhap_ten_sach(s[p].lay_ten_sach());
+                        k[so_khach_hang-1].t[i].nhap_tac_gia(s[p].lay_tac_gia());
+                        k[so_khach_hang-1].t[i].nhap_don_gia(s[p].lay_don_gia());
+                        k[so_khach_hang-1].t[i].nhap_so_luong(s[p].lay_so_luong());
+                        int n;
+                        cout<<"Thong tin sach: "<<endl;
+                        cout<<"Ten sach: "<<k[so_khach_hang -1].t[i].lay_ten_sach()<<endl;
+                        cout<<"Tac gia: "<<k[so_khach_hang -1].t[i].lay_tac_gia()<<endl;
+                        cout<<"Don gia: "<<k[so_khach_hang -1].t[i].lay_don_gia()<<endl;
+                        cout<<"So luong sach con trong kho: "<<k[so_khach_hang -1].t[i].lay_so_luong()<<endl;
+                        if(s[p].lay_so_luong()==0)
+                        {
+                            break;
+                        }
+                        cout<<"Nhap so luong can mua: "; cin>>n;
+                        while(n>s[p].lay_so_luong())
+                        {
+                            cout<<"So luong sach ban can mua vuot qua so luong sach trong kho, vui long chon lai";
+                            cin>>n;
+                        }
+                        k[so_khach_hang-1].t[i].nhap_so_luong(n);
+                        s[p].nhap_so_luong(s[p].lay_so_luong()-n);
+                        c++;
+                        break;
+                    }
+                }
+                if(c==0)
+                {
+                    cout<<"Loai sach ma ban muon mua khong co, vui long chon loai sach khac."<<endl;
+                    cout<<"Neu ban muon chon loai sach khac ma khong giam so luong can mua, nhan phim 1"<<endl;
+                    cout<<"Neu ban muon giam so luong sach can mua di 1 loai, an phim so bat ki"<<endl;
+                    int n; cin>>n;
+                    if(n != 1)  so_loai_sach_mua--;
+                    else break;
+                }
+            }
 
-            cout<<"---------------------"<<endl;
         }
+        cout<<"---------------------"<<endl;
+        cout<<"Hoa don thanh toan:"<<endl;
+        cout<<"Khach hang: "<<k[so_khach_hang-1].lay_ten_khach_hang()<<endl;
+        cout<<"---------------------"<<endl;
+        int tong_tien=0;
+        for(int i=0; i<so_loai_sach_mua;i++)
+        {
+            cout<<"-----Sach thu "<<i+1<<"-----"<<endl;
+            cout<<k[so_khach_hang-1].t[i].lay_ten_sach()<<" --- So luong: "<<k[so_khach_hang-1].t[i].lay_so_luong()<<endl;
+            int tien = k[so_khach_hang-1].t[i].lay_so_luong() * k[so_khach_hang-1].t[i].lay_don_gia();
+            tong_tien += tien;
+        }
+        cout<<"---------------------"<<endl;
+        cout<<"Tong thanh toan: "<<tong_tien<<endl;
+        cout<<"---------------------"<<endl;
+        
     }
 
 };
@@ -340,7 +359,7 @@ int main()
         int option;
         cout<<"Option: ";
         cin>>option;
-        while(option>5 || option<0)
+        while(option>4 || option<0)
         {
             cout<<"Vui long lua chon lai option!"<<endl;
             cout<<"Option: ";
@@ -361,6 +380,11 @@ int main()
             case 3:
             {
                 a.tim_sach_trong_kho(so_loai_sach);
+                break;
+            }
+            case 4:
+            {
+                a.xuat_hoa_don(so_loai_sach, so_khach_hang);
                 break;
             }
             case 0:
