@@ -182,7 +182,7 @@ class khach_hang
     protected:
     string ten_khach_hang = "unName";
     double so_dien_thoai = 0;
-    int so_luong_sach_mua = 0;
+    int so_loai_sach_mua = 0;
     public:
     sach t[100];
     void nhap_ten_khach_hang(string ten_khach_hang)
@@ -201,13 +201,13 @@ class khach_hang
     {
         return so_dien_thoai;
     }
-    void nhap_so_luong_sach_mua(int so_luong_sach_mua)
+    void nhap_so_loai_sach_mua(int so_loai_sach_mua)
     {
-        this->so_luong_sach_mua=so_luong_sach_mua;
+        this->so_loai_sach_mua=so_loai_sach_mua;
     }
-    int lay_so_luong_sach_mua()
+    int lay_so_loai_sach_mua()
     {
-        return so_luong_sach_mua;
+        return so_loai_sach_mua;
     }
 };
 
@@ -235,7 +235,7 @@ class hoa_don :public kho_sach
         kho_sach::display(so_loai_sach);
     }
 
-    void xuat_hoa_don(int &so_loai_sach, int &so_khach_hang)
+    void xuat_hoa_don(int so_loai_sach, int &so_khach_hang)
     {
         cout<<"---------------------"<<endl;
         so_khach_hang ++;
@@ -248,7 +248,7 @@ class hoa_don :public kho_sach
         k[so_khach_hang -1].nhap_ten_khach_hang(x);
         cout<<"So dien thoai khach hang: "; cin >> y;
         k[so_khach_hang -1].nhap_so_dien_thoai(y);
-        // ham dien hoa don
+        cout<<"Chung toi hien co "<<so_loai_sach<<" loai sach"<<endl;
         cout<<"Ban muon mua bao nhieu loai sach? "; cin >> so_loai_sach_mua;
         while(so_loai_sach_mua>so_loai_sach)
         {
@@ -256,7 +256,7 @@ class hoa_don :public kho_sach
             cout<<"So loai sach ban muon mua lon hon so loai sach chung toi co"<<endl;
             cout<<"Ban co muon tra cuu cac loai sach chung toi hien co hay tim kiem thong tin loai sach nao khong?"<<endl;
             cout<<"Neu co, an phim 1, tro ve man hinh chinh va lua chon option 2 hoac 3."<<endl;
-            cout<<" Neu khong, an phim so bat ki"<<endl;
+            cout<<"Neu khong, an phim so bat ki"<<endl;
             int temp; cin>>temp;
             if(temp == 1)
             {
@@ -268,10 +268,12 @@ class hoa_don :public kho_sach
                 cout<<"Vui long nhap lai so loai sach can mua"; cin >> so_loai_sach_mua;
             }
         }
+        k[so_khach_hang-1].nhap_so_loai_sach_mua(so_loai_sach_mua);
         for(int i=0; i<so_loai_sach_mua; i++)
         {
             int c = 0;
             string x;
+            
             while(c==0)
             {
                 cout<<"Sach thu "<<i+1<<endl;
@@ -298,8 +300,8 @@ class hoa_don :public kho_sach
                         cout<<"Nhap so luong can mua: "; cin>>n;
                         while(n>s[p].lay_so_luong())
                         {
-                            cout<<"So luong sach ban can mua vuot qua so luong sach trong kho, vui long chon lai";
-                            cin>>n;
+                            cout<<"So luong sach ban can mua vuot qua so luong sach trong kho, vui long chon lai"<<endl;
+                            cout<<"Nhap so luong can mua: "; cin>>n;
                         }
                         k[so_khach_hang-1].t[i].nhap_so_luong(n);
                         s[p].nhap_so_luong(s[p].lay_so_luong()-n);
@@ -337,6 +339,41 @@ class hoa_don :public kho_sach
         
     }
 
+    void tim_hoa_don_theo_sdt(int so_khach_hang)
+    {
+        double sdt;
+        cout<<"Nhap so dien thoai khach hang can tra cuu hoa don: "<<endl;
+        cin>>sdt;
+        int f=0;
+        for(int i=0; i<so_khach_hang; i++)
+        {
+            if(sdt==k[i].lay_so_dien_thoai())
+            {
+                int tong_tien=0;
+                cout<<"---------------------"<<endl;
+                cout<<"Hoa don thanh toan:"<<endl;
+                cout<<"Khach hang: "<<k[i].lay_ten_khach_hang()<<endl;
+                cout<<"---------------------"<<endl;
+                for(int j=0; j<k[i].lay_so_loai_sach_mua();j++)
+                {
+                    cout<<"-----Sach thu "<<j+1<<"-----"<<endl;
+                cout<<k[i].t[j].lay_ten_sach()<<" --- So luong: "<<k[i].t[j].lay_so_luong()<<endl;
+                int tien = k[i].t[j].lay_so_luong() * k[i].t[j].lay_don_gia();
+                tong_tien += tien;
+                }
+                if(tong_tien == 0) continue;
+                cout<<"---------------------"<<endl;
+                cout<<"Tong thanh toan: "<<tong_tien<<endl;
+                cout<<"---------------------"<<endl;
+                f++;
+            }
+        }
+        if(f==0)
+        {
+            cout<<"Khong tim thay thong tin khach hang theo so dien thoai tren!"<<endl;
+        }
+    }
+
 };
 
 int main()
@@ -346,20 +383,20 @@ int main()
     hoa_don a;
     cout<<"---------------------"<<endl;
     cout<<"CHUONG TRINH QUAN LY NHA SACH"<<endl;
-    cout<<"---------------------"<<endl;
-    cout<<"Option:"<<endl;
-    cout<<"1. Nhap them sach vao kho"<<endl;
-    cout<<"2. Hien thi ra toan bo danh sach cac loai sach"<<endl;
-    cout<<"3. Tim thong tin sach"<<endl;
-    cout<<"4. Ban sach va xuat hoa don"<<endl;
-    cout<<"5. Tim lich su hoa don khach hang theo so dien thoai"<<endl;
-    cout<<"---------------------"<<endl;
     while(1)
     {
+        cout<<"---------------------"<<endl;
+        cout<<"Option:"<<endl;
+        cout<<"1. Nhap them sach vao kho"<<endl;
+        cout<<"2. Hien thi ra toan bo danh sach cac loai sach"<<endl;
+        cout<<"3. Tim thong tin sach"<<endl;
+        cout<<"4. Ban sach va xuat hoa don"<<endl;
+        cout<<"5. Tim lich su hoa don khach hang theo so dien thoai"<<endl;
+        cout<<"---------------------"<<endl;
         int option;
         cout<<"Option: ";
         cin>>option;
-        while(option>4 || option<0)
+        while(option>5 || option<0)
         {
             cout<<"Vui long lua chon lai option!"<<endl;
             cout<<"Option: ";
@@ -385,6 +422,11 @@ int main()
             case 4:
             {
                 a.xuat_hoa_don(so_loai_sach, so_khach_hang);
+                break;
+            }
+            case 5:
+            {
+                a.tim_hoa_don_theo_sdt(so_khach_hang);
                 break;
             }
             case 0:
