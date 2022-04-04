@@ -430,12 +430,13 @@ int main()
             }
             case 0:
             {
-                return 0;
+                goto end;
                 break;
             }
             
         }
     }
+    end:
     return 0;
 }
 
