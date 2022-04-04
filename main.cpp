@@ -1,6 +1,5 @@
 #include<iostream>
 #include<string.h>
-#include<vector>
 using namespace std;
 
 class sach
@@ -439,3 +438,8 @@ int main()
     }
     return 0;
 }
+
+
+
+
+
