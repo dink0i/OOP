@@ -67,8 +67,7 @@ class sach
     int lay_so_luong()
     {
         return so_luong;
-    }
-    
+    }  
     void display()
     {
         cout<<"-------------"<<endl;
